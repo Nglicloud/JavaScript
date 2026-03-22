@@ -1,0 +1,42 @@
+name: SonarCloud Scan (JS)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sonar:
+    name: Build and Analyze
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # important for Sonar (full history)
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Run tests (optional but recommended)
+      - name: Run tests
+        run: npm test || true
+
+      # 5. SonarCloud Scan
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=Nglicloud_JavaScript
+            -Dsonar.organization=nglicloud
+        env:
+          SONAR_TOKEN: 75f5d23fd39669ae77ea05ba90a303606672ef5a
