@@ -182,3 +182,16 @@ export {
   areaRhombus,
   areaTriangleWithAllThreeSides
 }
+
+export {
+  surfaceAreaCube,
+  surfaceAreaSphere,
+  areaRectangle,
+  areaSquare,
+  areaTriangle,
+  areaParallelogram,
+  areaTrapezium,
+  areaCircle,
+  areaRhombus,
+  areaTriangleWithAllThreeSides
+}
